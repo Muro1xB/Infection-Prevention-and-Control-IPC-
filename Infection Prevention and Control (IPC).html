@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infection Prevention and Control | مكافحة العدوى والوقاية منها</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Roboto:wght@600;700;800&display=swap');
+
+        :root {
+            --font-ar: 'Cairo', sans-serif;
+            --font-en: 'Roboto', sans-serif;
+            --primary: #2563EB;
+            --secondary: #10B981;
+            --bg: #FFFFFF;
+            --bg-card: #F8FAFC;
+            --text: #0F172A;
+            --text-2: #475569;
+            --border: #E2E8F0;
+        }
+
+        body.dark-mode {
+            --bg: #0F172A;
+            --bg-card: #1E293B;
+            --text: #F8FAFC;
+            --text-2: #E2E8F0;
+            --border: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-ar);
+            background: var(--bg);
+            color: var(--text);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--bg-card);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: transform 0.3s;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        header.hidden { transform: translateY(-100%); }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .developer-name {
+            font-family: var(--font-en);
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-nav { display: flex; gap: 0.5rem; }
+
+        .main-nav a {
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-2);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .main-nav a:hover { background: var(--bg-card); color: var(--primary); }
+        .main-nav a.active { background: var(--primary); color: white; }
+
+        .theme-toggle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover { background: var(--primary); color: white; }
+
+        #welcome-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .welcome-content { text-align: center; color: white; }
+        .welcome-content h1 { font-size: 3rem; font-weight: 800; }
+
+        .loading-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            margin-top: 2rem;
+        }
+
+        .loading-bar::after {
+            content: '';
+            display: block;
+            height: 100%;
+            background: white;
+            animation: load 4s;
+        }
+
+        @keyframes load {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        .page { display: none; padding: 90px 1rem 3rem; }
+        .page.active-page { display: block; }
+
+        .concept-slide, .question-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 1100px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+            padding-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 0.75rem;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .dual-text-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--bg-card);
+        }
+
+        .english-side {
+            text-align: left;
+            direction: ltr;
+            font-family: var(--font-en);
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.8;
+            border-right: 4px solid var(--primary);
+            padding-right: 1rem;
+        }
+
+        .arabic-side {
+            text-align: right;
+            direction: rtl;
+            font-family: var(--font-ar);
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.8;
+            color: var(--text-2);
+            border-left: 4px solid var(--secondary);
+            padding-left: 1rem;
+        }
+
+        button {
+            padding: 0.8rem 1.8rem;
+            font-weight: 700;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+
+        button:hover { background: #1E40AF; }
+
+        .flashcard {
+            width: 100%;
+            max-width: 700px;
+            height: 450px;
+            margin: 2rem auto;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            background: var(--bg-card);
+            border: 3px solid var(--primary);
+        }
+
+        .flashcard-back { transform: rotateY(180deg); }
+
+        .card-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .question-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .option {
+            padding: 1rem;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover { border-color: var(--primary); }
+
+        .option.correct { 
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--secondary);
+        }
+
+        .option.incorrect { 
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #EF4444;
+        }
+
+        .glossary-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .glossary-item h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .audio-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0;
+            margin: 0;
+        }
+
+        .audio-btn:hover { color: var(--secondary); }
+
+        .important-number {
+            display: flex;
+            align-items: center;
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-right: 1.5rem;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .number-content {
+            flex: 1;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1E40AF, var(--primary));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer a { 
+            color: white; 
+            font-weight: 700; 
+            margin: 0.5rem 1rem; 
+            text-decoration: none;
+        }
+
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 968px) {
+            .header-container { flex-direction: column; gap: 0.5rem; padding: 0.5rem; }
+            header { height: auto; }
+            .main-nav { flex-wrap: wrap; justify-content: center; gap: 0.3rem; }
+            .main-nav a { padding: 0.4rem 0.7rem; font-size: 0.85rem; }
+            .dual-text-row { grid-template-columns: 1fr; gap: 1rem; }
+            .english-side { border-right: none; border-bottom: 3px solid var(--primary); padding-bottom: 1rem; }
+            .arabic-side { border-left: none; border-top: 3px solid var(--secondary); padding-top: 1rem; }
+            .page { padding-top: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen">
+        <div class="welcome-content">
+            <h1>Infection Prevention and Control</h1>
+            <h1>مكافحة العدوى والوقاية منها</h1>
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="developer-name">Infection Control Platform</div>
+            <nav class="main-nav">
+                <a href="#" onclick="navigateToPage('explanation', this)" class="active">الشرح المفصل</a>
+                <a href="#" onclick="navigateToPage('flashcards', this)">فلاش كاردز</a>
+                <a href="#" onclick="navigateToPage('questions', this)">بنك الأسئلة</a>
+                <a href="#" onclick="navigateToPage('tricks', this)">التريكات</a>
+                <a href="#" onclick="navigateToPage('review', this)">المراجعة النهائية</a>
+                <a href="#" onclick="navigateToPage('dictionary', this)">القاموس الصوتي</a>
+                <a href="#" onclick="navigateToPage('numbers', this)">الأرقام المهمة</a>
+            </nav>
+            <button class="theme-toggle" onclick="toggleDarkMode()">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page 1: Detailed Explanation -->
+        <section id="explanation" class="page active-page">
+            <div class="concept-slide">
+                <h1>Infection Prevention and Control (IPC)</h1>
+                <h2>مكافحة العدوى والوقاية منها</h2>
+                
+                <h3>Introduction</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Microorganisms are naturally present in almost all environments. Some are beneficial; some are not. Some are harmless to most people, and other are harmful to many people. Still others are harmless except in certain circumstances.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>الكائنات الدقيقة موجودة بشكل طبيعي في جميع البيئات تقريبًا. بعضها مفيد وبعضها ليس كذلك. بعضها غير ضار لمعظم الناس، وبعضها ضار للكثيرين. والبعض الآخر غير ضار إلا في ظروف معينة.</p>
+                    </div>
+                </div>
+                
+                <h3>Healthcare-Associated Infections (HAI)</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Healthcare-Associated Infections (HAI) are infections that patients acquire during receiving treatment for other conditions within a healthcare setting, within 48 hours from admission to hospital.</p>
+                        <p>The most common sites of HAIs are:</p>
+                        <ul>
+                            <li>Urinary tract infection (UTI)</li>
+                            <li>Surgical site infection</li>
+                            <li>Bloodstream infection</li>
+                            <li>Pneumonia</li>
+                        </ul>
+                    </div>
+                    <div class="arabic-side">
+                        <p>العدوى المرتبطة بالرعاية الصحية (HAI) هي عدوى يكتسبها المرضى أثناء تلقي العلاج لحالات أخرى ضمن بيئة الرعاية الصحية، خلال 48 ساعة من دخول المستشفى.</p>
+                        <p>أكثر المواقع شيوعًا لعدوى الرعاية الصحية هي:</p>
+                        <ul>
+                            <li>عدوى المسالك البولية (UTI)</li>
+                            <li>عدوى موقع الجراحة</li>
+                            <li>عدوى مجرى الدم</li>
+                            <li>الالتهاب الرئوي</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Chain of Infection</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>An infection occurs as a result of a cyclic process, consisting of six components:</p>
+                        <ol>
+                            <li>Infectious Agent</li>
+                            <li>Reservoir (Source)</li>
+                            <li>Portal of Exit</li>
+                            <li>Mode of Transmission</li>
+                            <li>Portal of Entry</li>
+                            <li>Susceptible Host</li>
+                        </ol>
+                    </div>
+                    <div class="arabic-side">
+                        <p>يحدث العدوى نتيجة عملية دورية تتكون من ستة مكونات:</p>
+                        <ol>
+                            <li>العامل المعدي</li>
+                            <li>الخزان (المصدر)</li>
+                            <li>بوابة الخروج</li>
+                            <li>طريقة الانتقال</li>
+                            <li>بوابة الدخول</li>
+                            <li>المضيف المستعد</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <h3>Standard Infection Control Precautions</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Standard Infection Control Precautions consist of 9 elements:</p>
+                        <ol>
+                            <li>Hand Hygiene</li>
+                            <li>Personal Protective Equipment (PPE)</li>
+                            <li>Prevention of occupational exposure</li>
+                            <li>Management of blood and body fluid spillage</li>
+                            <li>Management of care equipment</li>
+                            <li>Environmental control</li>
+                            <li>Safe disposal of waste including sharps</li>
+                            <li>Safe handling, transport and processing of linen</li>
+                            <li>Patient placement</li>
+                        </ol>
+                    </div>
+                    <div class="arabic-side">
+                        <p>تتكون احتياطات مكافحة العدوى القياسية من 9 عناصر:</p>
+                        <ol>
+                            <li>نظافة اليدين</li>
+                            <li>معدات الحماية الشخصية (PPE)</li>
+                            <li>الوقاية من التعرض المهني</li>
+                            <li>إدارة انسكاب الدم والسوائل الجسدية</li>
+                            <li>إدارة معدات الرعاية</li>
+                            <li>التحكم البيئي</li>
+                            <li>التخلص الآمن من النفايات بما في ذلك الأدوات الحادة</li>
+                            <li>التعامل الآمن والنقل ومعالجة الكتان</li>
+                            <li>وضع المريض</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <h3>Decontamination</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Decontamination removes soil and pathogenic microorganisms from objects so they are safe to handle, subject to further processing, use or discard.</p>
+                        <p>Levels of Sterilization:</p>
+                        <ol>
+                            <li>Noncritical Items - Cleaning (e.g., Blood pressure cuffs, Crutches, Linens)</li>
+                            <li>Semicritical Items - Disinfection (e.g., Gastrointestinal endoscopes, Reusable mercury thermometers)</li>
+                            <li>Critical Items - Sterilization (e.g., Surgical instruments, Cardiac catheters, Urinary catheters, Needles & implants)</li>
+                        </ol>
+                    </div>
+                    <div class="arabic-side">
+                        <p>إزالة التلوث تزيل التربة والكائنات الدقيقة الممرضة من الأشياء بحيث تكون آمنة للتعامل معها، وخاضعة لمزيد من المعالجة، أو الاستخدام أو التخلص منها.</p>
+                        <p>مستويات التعقيم:</p>
+                        <ol>
+                            <li>العناصر غير الحرجة - التنظيف (مثل: أجهزة قياس ضغط الدم، العكازات، الأغطية)</li>
+                            <li>العناصر شبه الحرجة - التطهير (مثل: مناظير الجهاز الهضمي، موازين الزئبق القابلة لإعادة الاستخدام)</li>
+                            <li>العناصر الحرجة - التعقيم (مثل: الأدوات الجراحية، القسطرة القلبية، القسطرة البولية، الإبر والغرسات)</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <h3>Waste Management</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Waste management includes all activities involved in the handling, treatment, conditioning, storage and disposal of waste.</p>
+                        <p>Kinds of waste:</p>
+                        <ol>
+                            <li>General waste: Non-hazardous waste (e.g., paper, boxes, packaging materials, bottles, plastic containers, and food related trash)</li>
+                            <li>Medical waste: Material generated in the diagnosis, treatment, or immunization of clients</li>
+                            <li>Hazardous chemical waste: Chemical waste that is potentially toxic or poisonous (e.g., cleaning products, disinfectants, cytotoxic drugs, and radioactive compounds)</li>
+                        </ol>
+                    </div>
+                    <div class="arabic-side">
+                        <p>إدارة النفايات تشمل جميع الأنشطة المتعلقة بالتعامل والمعالجة والتكييف والتخزين والتخلص من النفايات.</p>
+                        <p>أنواع النفايات:</p>
+                        <ol>
+                            <li>النفايات العامة: نفايات غير خطرة (مثل: الورق، الصناديق، مواد التغليف، الزجاجات، الحاويات البلاستيكية، والنفايات الغذائية)</li>
+                            <li>النفايات الطبية: المواد المتولدة في تشخيص أو علاج أو تحصين المرضى</li>
+                            <li>النفايات الكيميائية الخطرة: النفايات الكيميائية التي تكون سامة أو ضارة محتملة (مثل: منتجات التنظيف، المطهرات، الأدوية السامة للخلايا، والمركبات المشعة)</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <h3>Asepsis</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Asepsis means the absence of microorganisms.</p>
+                        <p>Two types of Asepsis:</p>
+                        <ol>
+                            <li>Medical Asepsis: Practices which prevent by all means of cross infection from one patient to another, including communicable infection. Also known as clean technique.</li>
+                            <li>Surgical Asepsis: Practices which eliminate all microorganisms and spores from an object or area (keeping objects and area sterile, through sterile technique).</li>
+                        </ol>
+                        <p>Principles of Aseptic Techniques:</p>
+                        <ul>
+                            <li>If sterile item touches unsterile item, it becomes unsterile</li>
+                            <li>If sterile item becomes wet, it is considered unsterile</li>
+                            <li>If sterile item has a hole, it becomes unsterile</li>
+                            <li>If sterile items fall on the floor, it is considered unsterile</li>
+                            <li>If unsterile item crosses over the sterile item, it becomes unsterile</li>
+                            <li>If sterile items are exposed to air, it becomes unsterile</li>
+                            <li>If in doubt about sterility, consider it unsterile</li>
+                        </ul>
+                    </div>
+                    <div class="arabic-side">
+                        <p>التعقيم يعني غياب الكائنات الدقيقة.</p>
+                        <p>نوعان من التعقيم:</p>
+                        <ol>
+                            <li>التعقيم الطبي: الممارسات التي تمنع بكل الوسائل العدوى المتقاطعة من مريض إلى آخر، بما في ذلك العدوى المعدية. يُعرف أيضًا بتقنية النظافة.</li>
+                            <li>التعقيم الجراحي: الممارسات التي تزيل جميع الكائنات الدقيقة والجراثيم من جسم أو منطقة (الحفاظ على الأشياء والمنطقة معقمة، من خلال تقنية معقمة).</li>
+                        </ol>
+                        <p>مبادئ تقنيات التعقيم:</p>
+                        <ul>
+                            <li>إذا لمس العنصر المعقم عنصرًا غير معقم، يصبح غير معقم</li>
+                            <li>إذا أصبح العنصر المعقم مبللاً، يعتبر غير معقم</li>
+                            <li>إذا كان للعنصر المعقم ثقب، يصبح غير معقم</li>
+                            <li>إذا سقطت العناصر المعقمة على الأرض، تعتبر غير معقمة</li>
+                            <li>إذا عبر العنصر غير المعقم فوق العنصر المعقم، يصبح غير معقم</li>
+                            <li>إذا تعرضت العناصر المعقمة للهواء، تصبح غير معقمة</li>
+                            <li>إذا كان هناك شك في التعقيم، اعتبره غير معقم</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: Flashcards -->
+        <section id="flashcards" class="page">
+            <h1>Flashcards</h1>
+            <h2>البطاقات التعليمية</h2>
+            
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <h2>Healthcare-Associated Infections (HAI)</h2>
+                        <h3>العدوى المرتبطة بالرعاية الصحية</h3>
+                        <p>Click to flip / انقر للقلب</p>
+                    </div>
+                    <div class="flashcard-back">
+                        <div class="dual-text-row">
+                            <div class="english-side">
+                                <p>Infections that patients acquire during receiving treatment for other conditions within a healthcare setting, within 48 hours from admission to hospital.</p>
+                                <p>Common sites: UTI, Surgical site infection, Bloodstream infection, Pneumonia</p>
+                            </div>
+                            <div class="arabic-side">
+                                <p>عدوى يكتسبها المرضى أثناء تلقي العلاج لحالات أخرى ضمن بيئة الرعاية الصحية، خلال 48 ساعة من دخول المستشفى.</p>
+                                <p>المواقع الشائعة: عدوى المسالك البولية، عدوى موقع الجراحة، عدوى مجرى الدم، الالتهاب الرئوي</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-controls">
+                <button onclick="prevCard()">Previous / السابق</button>
+                <button onclick="nextCard()">Next / التالي</button>
+            </div>
+            
+            <div class="concept-slide">
+                <h3>Card Progress / تقدم البطاقات</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Card <span id="current-card">1</span> of <span id="total-cards">15</span></p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>البطاقة <span id="current-card-ar">1</span> من <span id="total-cards-ar">15</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 3: Question Bank -->
+        <section id="questions" class="page">
+            <h1>Question Bank</h1>
+            <h2>بنك الأسئلة</h2>
+            
+            <div class="question-card">
+                <h3>Question 1</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>A patient develops a urinary tract infection 48 hours after being admitted to the hospital. This type of infection is best described as a:</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>يصاب المريض بعدوى في المسالك البولية بعد 48 ساعة من دخوله المستشفى. هذا النوع من العدوى يوصف بشكل أفضل بأنه:</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Community-Acquired Infection</div>
+                            <div class="arabic-side">أ) العدوى المكتسبة من المجتمع</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Pathogenic Infection</div>
+                            <div class="arabic-side">ب) العدوى الممرضة</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Normal Flora Infection</div>
+                            <div class="arabic-side">ج) عدوى الفلورا الطبيعية</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Healthcare-Associated Infection (HAI)</div>
+                            <div class="arabic-side">د) العدوى المرتبطة بالرعاية الصحية (HAI)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation1" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> Healthcare-Associated Infections (HAI) are infections that patients acquire during receiving treatment for other conditions within a healthcare setting, within 48 hours from admission to hospital.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> العدوى المرتبطة بالرعاية الصحية (HAI) هي عدوى يكتسبها المرضى أثناء تلقي العلاج لحالات أخرى ضمن بيئة الرعاية الصحية، خلال 48 ساعة من دخول المستشفى.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 2</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Which of the following is NOT one of the six components in the chain of infection?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>أي من التالي ليس أحد المكونات الستة في سلسلة العدوى؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Infectious Agent</div>
+                            <div class="arabic-side">أ) العامل المعدي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Hand Hygiene</div>
+                            <div class="arabic-side">ب) نظافة اليدين</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Portal of Entry</div>
+                            <div class="arabic-side">ج) بوابة الدخول</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Susceptible Host</div>
+                            <div class="arabic-side">د) المضيف المستعد</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation2" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> The six components in the chain of infection are: Infectious Agent, Reservoir (Source), Portal of Exit, Mode of Transmission, Portal of Entry, and Susceptible Host. Hand Hygiene is a preventive measure, not a component of the chain.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> المكونات الستة في سلسلة العدوى هي: العامل المعدي، الخزان (المصدر)، بوابة الخروج، طريقة الانتقال، بوابة الدخول، والمضيف المستعد. نظافة اليدين هي إجراء وقائي، وليست مكونًا في السلسلة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 3</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>In the context of infection, a contaminated surface such as a doorknob or a bedrail, which can harbor and transmit pathogens, is an example of a:</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>في سياق العدوى، السطح الملوث مثل مقبض الباب أو حافة السرير، الذي يمكن أن يستضيف وينقل مسببات الأمراض، هو مثال على:</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Portal of Exit</div>
+                            <div class="arabic-side">أ) بوابة الخروج</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Reservoir (Fomite)</div>
+                            <div class="arabic-side">ب) الخزان (الفيوميت)</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Susceptible Host</div>
+                            <div class="arabic-side">ج) المضيف المستعد</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Direct Transmission</div>
+                            <div class="arabic-side">د) الانتقال المباشر</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation3" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> A fomite is an inanimate object or material that can carry infectious agents and transmit them to a new host. Contaminated surfaces like doorknobs and bedrails are examples of fomites, which serve as reservoirs for pathogens.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> الفيوميت هو جسم أو مادة غير حية يمكن أن تحمل عوامل معدية وتنقلها إلى مضيف جديد. الأسطح الملوضة مثل مقابض الأبواب وحواجز السرير هي أمثلة على الفيوميتات، والتي تعمل كخزانات لمسببات الأمراض.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 4</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>A healthcare worker spreading a pathogen from one patient to another on their unwashed hands is an example of what mode of transmission?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>انتقال ممرض الرعاية الصحية مسببًا للمرض من مريض إلى آخر على يديه غير المغسولة هو مثال على أي طريقة انتقال؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Direct Transmission</div>
+                            <div class="arabic-side">أ) الانتقال المباشر</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Indirect Transmission</div>
+                            <div class="arabic-side">ب) الانتقال غير المباشر</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Airborne Transmission</div>
+                            <div class="arabic-side">ج) الانتقال عبر الهواء</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Vector-Borne Transmission</div>
+                            <div class="arabic-side">د) الانتقال عبر النواقل</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation4" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> Indirect transmission occurs when pathogens are transferred from a reservoir to a host through an intermediate object (fomite). In this case, the healthcare worker's unwashed hands serve as the intermediate object transferring the pathogen between patients.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> يحدث الانتقال غير المباشر عندما يتم نقل مسببات الأمراض من الخزان إلى المضيف عبر كائن وسيط (فيوميت). في هذه الحالة، تعمل يدي ممرض الرعاية الصحية غير المغسولة ككائن وسيط ينقل المسبب للمرض بين المرضى.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 5</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Which of the following factors would most likely increase a person's susceptibility to infection?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>أي من العوامل التالية من المرجح أن يزيد من قابلية الشخص للإصابة بالعدوى؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) A healthy diet</div>
+                            <div class="arabic-side">أ) نظام غذائي صحي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Intact skin</div>
+                            <div class="arabic-side">ب) الجلد سليم</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Being on chemotherapy</div>
+                            <div class="arabic-side">ج) الخضوع للعلاج الكيميائي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Normal body pH levels</div>
+                            <div class="arabic-side">د) مستويات الأس الهيدروجيني الطبيعية في الجسم</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation5" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> Chemotherapy suppresses the immune system, making a person more susceptible to infections. Other factors that increase susceptibility include age, poor nutrition, stress, invasive devices, chronic diseases, and certain medications.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> العلاج الكيميائي يثبط الجهاز المناعي، مما يجعل الشخص أكثر عرضة للعدوى. تشمل العوامل الأخرى التي تزيد من القابلية للإصابة: العمر، وسوء التغذية، والإجهاد، والأجهزة الغازية، والأمراض المزمنة، وبعض الأدوية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 6</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>What is the fundamental principle of Standard Infection Control Precautions (SICPs)?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>ما هو المبدأ الأساسي لاحتياطات مكافحة العدوى القياسية (SICPs)؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Only patients with known infections are a risk.</div>
+                            <div class="arabic-side">أ) فقط المرضى الذين لديهم عدوى معروفة هم خطر.</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) All blood and body fluids should be considered potentially infectious.</div>
+                            <div class="arabic-side">ب) يجب اعتبار جميع الدم والسوائل الجسدية معدية محتملة.</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Hand hygiene is only necessary after touching a patient.</div>
+                            <div class="arabic-side">ج) نظافة اليدين ضرورية فقط بعد لمس المريض.</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) PPE is only required for surgical procedures.</div>
+                            <div class="arabic-side">د) معدات الحماية الشخصية مطلوبة فقط للإجراءات الجراحية.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation6" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> The fundamental principle of Standard Infection Control Precautions is that blood and body fluids from all patients should be treated as potentially infectious. This approach assumes that all patients could be infectious, even if they don't have a diagnosed infection.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> المبدأ الأساسي لاحتياطات مكافحة العدوى القياسية هو أن الدم والسوائل الجسدية من جميع المرضى يجب التعامل معها على أنها معدية محتملة. هذا النهج يفترض أن جميع المرضى يمكن أن يكونوا معدية، حتى لو لم يكن لديهم تشخيص بالعدوى.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 7</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>A surgical scalpel that will enter sterile body tissue is classified as what type of item for decontamination?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>مشرط جراحي سيدخل أنسجة الجسم المعقمة يصنف كنوع من العناصر لإزالة التلوث؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Noncritical</div>
+                            <div class="arabic-side">أ) غير حرج</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Semicritical</div>
+                            <div class="arabic-side">ب) شبه حرج</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Critical</div>
+                            <div class="arabic-side">ج) حرج</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) General</div>
+                            <div class="arabic-side">د) عام</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation7" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> Critical items are those that enter sterile tissue or the vascular system and present a high risk of infection if contaminated. These items require sterilization to destroy all microorganisms, including spores.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> العناصر الحرجة هي تلك التي تدخل الأنسجة المعقمة أو الجهاز الوعائي وتشكل خطرًا عاليًا للعدوى إذا كانت ملوثة. تتطلب هذه العناصر التعقيم لتدمير جميع الكائنات الدقيقة، بما في ذلك الجراثيم.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 8</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>According to the decontamination guidelines, which process is required for a critical item like a cardiac catheter?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>وفقًا لإرشادات إزالة التلوث، أي عملية مطلوبة لعنصر حرج مثل القسطرة القلبية؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Cleaning with soap and water</div>
+                            <div class="arabic-side">أ) التنظيف بالصابون والماء</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) High-level disinfection</div>
+                            <div class="arabic-side">ب) التطهير عالي المستوى</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Sterilization</div>
+                            <div class="arabic-side">ج) التعقيم</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Rinsing with an antiseptic</div>
+                            <div class="arabic-side">د) الشطف بمطهر</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation8" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> Critical items that enter sterile tissue or the vascular system require sterilization, which destroys all microorganisms, including spores. Cardiac catheters are considered critical items as they enter the vascular system.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> العناصر الحرجة التي تدخل الأنسجة المعقمة أو الجهاز الوعائي تتطلب التعقيم، الذي يدمر جميع الكائنات الدقيقة، بما في ذلك الجراثيم. تعتبر القسطرة القلبية من العناصر الحرجة لأنها تدخل الجهاز الوعائي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 9</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>In the color-coding system for waste management, which container is used for disposing of infectious waste like blood-soaked dressings?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>في نظام الترميز اللوني لإدارة النفايات، أي حاوية تستخدم للتخلص من النفايات المعدية مثل الضمادات المبللة بالدم؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Black Bag</div>
+                            <div class="arabic-side">أ) كيس أسود</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Sharps Box</div>
+                            <div class="arabic-side">ب) صندوق الأدوات الحادة</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Red Bag</div>
+                            <div class="arabic-side">ج) كيس أحمر</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Green Bag</div>
+                            <div class="arabic-side">د) كيس أخضر</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation9" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> In the color-coding system for waste management, red bags are used for infectious waste containing body fluids like blood, saliva, stool, etc. Black bags are for non-medical waste, and sharps boxes are for sharp materials like syringe needles.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> في نظام الترميز اللوني لإدارة النفايات، تستخدم الأكياس الحمراء للنفايات المعدية التي تحتوي على سوائل الجسم مثل الدم واللعاب والبراز، إلخ. الأكياس السوداء للنفايات غير الطبية، وصناديق الأدوات الحادة للمواد الحادة مثل إبر المحاقن.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 10</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>What is the correct way to dispose of a used syringe and needle?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>ما هي الطريقة الصحيحة للتخلص من حقنة وإبرة مستخدمة؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) In the red infectious waste bag</div>
+                            <div class="arabic-side">أ) في كيس النفايات المعدية الأحمر</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) In a puncture-resistant sharps container</div>
+                            <div class="arabic-side">ب) في حاوية أدوات حادة مقاومة للثقب</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) In the black general waste bag</div>
+                            <div class="arabic-side">ج) في كيس النفايات العامة الأسود</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Wrapped in paper and placed in the general trash</div>
+                            <div class="arabic-side">د) ملفوفة في ورق ووضعت في القمامة العامة</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation10" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> Used syringes and needles should be disposed of in puncture-resistant sharps containers to prevent needlestick injuries. This is a critical safety measure in healthcare settings.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> يجب التخلص من المحاقن والإبر المستخدمة في حاويات الأدوات الحادة المقاومة للثقب لمنع إصابات الإبر. هذا إجراء سلامة حاسم في بيئات الرعاية الصحية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 11</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>The term for a chemical agent applied to living tissue to inhibit microbial growth is:</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>المصطلح للعامل الكيميائي المطبق على الأنسجة الحية لمنع نمو الكائنات الدقيقة هو:</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Disinfectant</div>
+                            <div class="arabic-side">أ) مطهر</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Sterilant</div>
+                            <div class="arabic-side">ب) معقم</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Antiseptic</div>
+                            <div class="arabic-side">ج) مطهر للأنسجة الحية</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Cleaner</div>
+                            <div class="arabic-side">د) منظف</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation11" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> An antiseptic is a chemical agent that is applied to living tissue to inhibit the growth of microorganisms. Disinfectants are used on inanimate objects, while sterilants destroy all microorganisms including spores.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> المطهر للأنسجة الحية هو عامل كيميائي يطبق على الأنسجة الحية لمنع نمو الكائنات الدقيقة. تستخدم المطهرات على الأجسام غير الحية، بينما المعقمات تدمر جميع الكائنات الدقيقة بما في ذلك الجراثيم.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 12</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>The practice of reducing the number of microorganisms and preventing their spread, also known as "Clean Technique," is called:</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>ممارسة تقليل عدد الكائنات الدقيقة ومنع انتشارها، المعروفة أيضًا بـ "تقنية النظافة"، تسمى:</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Surgical Asepsis</div>
+                            <div class="arabic-side">أ) التعقيم الجراحي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Medical Asepsis</div>
+                            <div class="arabic-side">ب) التعقيم الطبي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Sterilization</div>
+                            <div class="arabic-side">ج) التعقيم</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Disinfection</div>
+                            <div class="arabic-side">د) التطهير</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation12" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> Medical Asepsis, also known as "Clean Technique," refers to practices that reduce the number of microorganisms and prevent their spread. Surgical Asepsis eliminates all microorganisms, while sterilization and disinfection are specific processes.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> التعقيم الطبي، المعروف أيضًا بـ "تقنية النظافة"، يشير إلى الممارسات التي تقلل عدد الكائنات الدقيقة وتمنع انتشارها. التعقيم الجراحي يزيل جميع الكائنات الدقيقة، بينما التعقيم والتطهير هي عمليات محددة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 13</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>According to the principles of aseptic technique, if a sterile glove touches an unsterile surface, the glove is:</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>وفقًا لمبادئ تقنية التعقيم، إذا لمست قفاز معقم سطحًا غير معقم، فإن القفاز:</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Still considered sterile</div>
+                            <div class="arabic-side">أ) لا يزال يعتبر معقمًا</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Considered contaminated/unsterile</div>
+                            <div class="arabic-side">ب) يعتبر ملوثًا/غير معقم</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Considered disinfected</div>
+                            <div class="arabic-side">ج) يعتبر مطهرًا</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Safe to use after wiping with alcohol</div>
+                            <div class="arabic-side">د) آمن للاستخدام بعد المسح بالكحول</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation13" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> According to the principles of aseptic technique, if a sterile item touches an unsterile item, it becomes unsterile. This is a fundamental principle that maintains the sterility of objects and areas used in medical procedures.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> وفقًا لمبادئ تقنية التعقيم، إذا لمس عنصر معقم عنصرًا غير معقم، يصبح غير معقم. هذا مبدأ أساسي يحافظ على تعقيم الأشياء والمناطق المستخدمة في الإجراءات الطبية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 14</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Which of the following is considered a portal of exit for a pathogen?</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>أي من التالي يعتبر بوابة خروج لمسبب المرض؟</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) An intravenous line</div>
+                            <div class="arabic-side">أ) خط وريدي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) The immune system</div>
+                            <div class="arabic-side">ب) الجهاز المناعي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) A cough or sneeze</div>
+                            <div class="arabic-side">ج) سعال أو عطس</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) A sterile surgical wound</div>
+                            <div class="arabic-side">د) جرح جراحي معقم</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation14" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> A portal of exit is the point through which a pathogen leaves the reservoir. Common portals of exit include the respiratory tract (through coughing or sneezing), gastrointestinal tract, genitourinary tracts, breaks in the skin, blood, and tissues.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> بوابة الخروج هي النقطة التي يغادر منها مسبب المرض الخزان. تشمل بوابات الخروج الشائعة الجهاز التنفسي (عبر السعال أو العطس)، الجهاز الهضمي، المسالك البولية التناسلية، تمزقات في الجلد، الدم، والأنسجة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <h3>Question 15</h3>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>The "clean technique" used for procedures like administering medications or managing NG tubes is also known as:</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>"تقنية النظافة" المستخدمة في إجراءات مثل إعطاء الأدوية أو إدارة أنابيب الأنف المعدي (NG) تُعرف أيضًا بـ:</p>
+                    </div>
+                </div>
+                
+                <div class="question-options">
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">A) Surgical Asepsis</div>
+                            <div class="arabic-side">أ) التعقيم الجراحي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">B) Terminal Disinfection</div>
+                            <div class="arabic-side">ب) التطهير النهائي</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, false)">
+                        <div class="dual-text-row">
+                            <div class="english-side">C) Decontamination</div>
+                            <div class="arabic-side">ج) إزالة التلوث</div>
+                        </div>
+                    </div>
+                    <div class="option" onclick="checkAnswer(this, true)">
+                        <div class="dual-text-row">
+                            <div class="english-side">D) Medical Asepsis</div>
+                            <div class="arabic-side">د) التعقيم الطبي</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="explanation" id="explanation15" style="display: none; margin-top: 1rem;">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <p><strong>Explanation:</strong> Medical Asepsis, also known as "Clean Technique," refers to practices that reduce the number of microorganisms and prevent their spread. It is used for procedures like administering medications or managing NG tubes, where sterility is not required but cleanliness is essential.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <p><strong>الشرح:</strong> التعقيم الطبي، المعروف أيضًا بـ "تقنية النظافة"، يشير إلى الممارسات التي تقلل عدد الكائنات الدقيقة وتمنع انتشارها. يستخدم في إجراءات مثل إعطاء الأدوية أو إدارة أنابيب الأنف المعدي، حيث لا يتطلب التعقيم ولكن النظافة ضرورية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 4: Tricks -->
+        <section id="tricks" class="page">
+            <h1>Question Analysis Tricks</h1>
+            <h2>حيل تحليل الأسئلة</h2>
+            
+            <div class="concept-slide">
+                <h3>Key Words to Look For</h3>
+                <h3>كلمات مفتاحية للبحث عنها</h3>
+                
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p><strong>"Within 48 hours from admission"</strong> → Answer: Healthcare-Associated Infection (HAI)</p>
+                        <p><strong>"Six components"</strong> → Think: Chain of infection</p>
+                        <p><strong>"Contaminated surface"</strong> → Think: Reservoir (Fomite)</p>
+                        <p><strong>"Unwashed hands"</strong> → Think: Indirect transmission</p>
+                        <p><strong>"Increase susceptibility"</strong> → Think: Immune system suppression</p>
+                        <p><strong>"All blood and body fluids"</strong> → Think: Standard precautions principle</p>
+                        <p><strong>"Enter sterile tissue"</strong> → Think: Critical item requiring sterilization</p>
+                        <p><strong>"Blood-soaked dressings"</strong> → Think: Red bag for infectious waste</p>
+                        <p><strong>"Syringe and needle"</strong> → Think: Sharps container</p>
+                        <p><strong>"Applied to living tissue"</strong> → Think: Antiseptic</p>
+                        <p><strong>"Clean Technique"</strong> → Think: Medical Asepsis</p>
+                        <p><strong>"Sterile glove touches unsterile surface"</strong> → Think: Becomes unsterile</p>
+                        <p><strong>"Cough or sneeze"</strong> → Think: Portal of exit</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p><strong>"خلال 48 ساعة من القبول"</strong> → الإجابة: العدوى المرتبطة بالرعاية الصحية (HAI)</p>
+                        <p><strong>"ستة مكونات"</strong> → فكر: سلسلة العدوى</p>
+                        <p><strong>"سطح ملوث"</strong> → فكر: الخزان (الفيوميت)</p>
+                        <p><strong>"يدين غير مغسولتين"</strong> → فكر: الانتقال غير المباشر</p>
+                        <p><strong>"زيادة القابلية"</strong> → فكر: كبت الجهاز المناعي</p>
+                        <p><strong>"جميع الدم والسوائل الجسدية"</strong> → فكر: مبدأ الاحتياطات القياسية</p>
+                        <p><strong>"يدخل الأنسجة المعقمة"</strong> → فكر: عنصر حرج يتطلب التعقيم</p>
+                        <p><strong>"ضمادات مبللة بالدم"</strong> → فكر: كيس أحمر للنفايات المعدية</p>
+                        <p><strong>"حقنة وإبرة"</strong> → فكر: حاوية الأدوات الحادة</p>
+                        <p><strong>"مطبق على الأنسجة الحية"</strong> → فكر: مطهر للأنسجة الحية</p>
+                        <p><strong>"تقنية النظافة"</strong> → فكر: التعقيم الطبي</p>
+                        <p><strong>"قفاز معقم يلمس سطحًا غير معقم"</strong> → فكر: يصبح غير معقم</p>
+                        <p><strong>"سعال أو عطس"</strong> → فكر: بوابة خروج</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-slide">
+                <h3>Common Question Patterns</h3>
+                <h3>أنماط الأسئلة الشائعة</h3>
+                
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p><strong>Definition Questions:</strong> Look for precise terminology in the answer choices that matches the definition in the question.</p>
+                        <p><strong>Classification Questions:</strong> Pay attention to the category being asked (e.g., type of item, level of decontamination).</p>
+                        <p><strong>Process Questions:</strong> Focus on the correct sequence or procedure described in the question.</p>
+                        <p><strong>Exception Questions:</strong> Look for the option that doesn't fit with the others (e.g., "NOT one of the six components").</p>
+                        <p><strong>Application Questions:</strong> Apply theoretical knowledge to practical scenarios.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p><strong>أسئلة التعريف:</strong> ابحث عن المصطلحات الدقيقة في خيارات الإجابة التي تتطابق مع التعريف في السؤال.</p>
+                        <p><strong>أسئلة التصنيف:</strong> انتبه إلى الفئة المطلوبة (مثل: نوع العنصر، مستوى إزالة التلوث).</p>
+                        <p><strong>أسئلة العملية:</strong> ركز على التسلسل الصحيح أو الإجراء الموصوف في السؤال.</p>
+                        <p><strong>أسئلة الاستثناء:</strong> ابحث عن الخيار الذي لا يتوافق مع الآخرين (مثل: "ليس أحد المكونات الستة").</p>
+                        <p><strong>أسئلة التطبيق:</strong> طبق المعرفة النظرية على السيناريوهات العملية.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-slide">
+                <h3>Answer Elimination Strategies</h3>
+                <h3>استراتيجيات استبعاد الإجابات</h3>
+                
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p><strong>Opposite Answers:</strong> If two answers are opposites, one is likely correct.</p>
+                        <p><strong>Similar Answers:</strong> If two answers are very similar, neither is likely correct.</p>
+                        <p><strong>Absolute Terms:</strong> Be cautious of answers with absolute terms like "always" or "never" unless the question specifically supports them.</p>
+                        <p><strong>Scope Issues:</strong> Eliminate answers that are too broad or too narrow for the question.</p>
+                        <p><strong>Irrelevant Information:</strong> Cross out answers that contain information not relevant to the question.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p><strong>الإجابات المتضادة:</strong> إذا كانت إجابتان متضادتين، فمن المحتمل أن تكون إحداهما صحيحة.</p>
+                        <p><strong>الإجابات المتشابهة:</strong> إذا كانت إجابتان متشابهتان جدًا، فمن غير المحتمل أن تكون أي منهما صحيحة.</p>
+                        <p><strong>المصطلحات المطلقة:</strong> كن حذرًا من الإجابات التي تحتوي على مصطلحات مطلقة مثل "دائمًا" أو "أبدًا" إلا إذا كان السؤال يدعمها تحديدًا.</p>
+                        <p><strong>مشاكل النطاق:</strong> استبعد الإجابات التي تكون واسعة جدًا أو ضيقة جدًا بالنسبة للسؤال.</p>
+                        <p><strong>المعلومات غير ذات الصلة:</strong> شطب الإجابات التي تحتوي على معلومات غير ذات صلة بالسؤال.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 5: Final Review -->
+        <section id="review" class="page">
+            <h1>Final Review</h1>
+            <h2>المراجعة النهائية</h2>
+            
+            <div class="concept-slide">
+                <h3>Remember That:</h3>
+                <h3>تذكر أن:</h3>
+                
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>• Healthcare-Associated Infections (HAI) occur within 48 hours of hospital admission.</p>
+                        <p>• The chain of infection has six components: Infectious Agent, Reservoir, Portal of Exit, Mode of Transmission, Portal of Entry, and Susceptible Host.</p>
+                        <p>• Standard precautions assume all blood and body fluids are potentially infectious.</p>
+                        <p>• Critical items that enter sterile tissue require sterilization.</p>
+                        <p>• Red bags are for infectious waste containing body fluids.</p>
+                        <p>• Sharps go in puncture-resistant containers.</p>
+                        <p>• Antiseptics are for living tissue; disinfectants are for inanimate objects.</p>
+                        <p>• Medical Asepsis = Clean Technique; Surgical Asepsis = Sterile Technique.</p>
+                        <p>• If a sterile item touches an unsterile item, it becomes unsterile.</p>
+                        <p>• Breaking any link in the chain of infection can prevent transmission.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>• تحدث العدوى المرتبطة بالرعاية الصحية (HAI) خلال 48 ساعة من دخول المستشفى.</p>
+                        <p>• سلسلة العدوى لها ستة مكونات: العامل المعدي، الخزان، بوابة الخروج، طريقة الانتقال، بوابة الدخول، والمضيف المستعد.</p>
+                        <p>• تفترض الاحتياطات القياسية أن جميع الدم والسوائل الجسدية معدية محتملة.</p>
+                        <p>• العناصر الحرجة التي تدخل الأنسجة المعقمة تتطلب التعقيم.</p>
+                        <p>• الأكياس الحمراء للنفايات المعدية التي تحتوي على سوائل الجسم.</p>
+                        <p>• الأدوات الحادة توضع في حاويات مقاومة للثقب.</p>
+                        <p>• المطهرات للأنسجة الحية؛ المطهرات للأجسام غير الحية.</p>
+                        <p>• التعقيم الطبي = تقنية النظافة؛ التعقيم الجراحي = تقنية معقمة.</p>
+                        <p>• إذا لمس عنصر معقم عنصرًا غير معقم، يصبح غير معقم.</p>
+                        <p>• كسر أي رابط في سلسلة العدوى يمكن أن يمنع الانتقال.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-slide">
+                <h3>Key Differences</h3>
+                <h3>الاختلافات الرئيسية</h3>
+                
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p><strong>Medical vs. Surgical Asepsis:</strong> Medical reduces microorganisms; Surgical eliminates all microorganisms.</p>
+                        <p><strong>Antiseptic vs. Disinfectant:</strong> Antiseptic for living tissue; Disinfectant for inanimate objects.</p>
+                        <p><strong>Cleaning vs. Disinfection vs. Sterilization:</strong> Cleaning removes dirt; Disinfection kills most pathogens; Sterilization kills all microorganisms including spores.</p>
+                        <p><strong>Direct vs. Indirect Transmission:</strong> Direct is person-to-person; Indirect is through contaminated objects.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p><strong>التعقيم الطبي مقابل الجراحي:</strong> الطبي يقلل الكائنات الدقيقة؛ الجراحي يزيل جميع الكائنات الدقيقة.</p>
+                        <p><strong>المطهر للأنسجة الحية مقابل المطهر:</strong> المطهر للأنسجة الحية للأنسجة الحية؛ المطهر للأجسام غير الحية.</p>
+                        <p><strong>التنظيف مقابل التطهير مقابل التعقيم:</strong> التنظيف يزيل الأوساخ؛ التطهير يقتل معظم مسببات الأمراض؛ التعقيم يقتل جميع الكائنات الدقيقة بما في ذلك الجراثيم.</p>
+                        <p><strong>الانتقال المباشر مقابل غير المباشر:</strong> المباشر من شخص لشخص؛ غير المباشر عبر الأجسام الملوثة.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-slide">
+                <h3>Visual Memory Aids</h3>
+                <h3>مساعدات الذاكرة البصرية</h3>
+                
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p><strong>Chain of Infection:</strong> Imagine a chain with 6 links that must all be connected for infection to occur.</p>
+                        <p><strong>Waste Management Colors:</strong> Red for infectious (like blood), Black for general waste, Yellow container for sharps.</p>
+                        <p><strong>Decontamination Levels:</strong> Critical (surgical instruments) → Sterilization; Semicritical (endoscopes) → Disinfection; Noncritical (blood pressure cuff) → Cleaning.</p>
+                        <p><strong>PPE:</strong> Remember the order: Gown → Gloves → Mask → Eye protection (when removing, reverse order).</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p><strong>سلسلة العدوى:</strong> تخيل سلسلة بـ 6 روابط يجب أن تكون جميعها متصلة حتى تحدث العدوى.</p>
+                        <p><strong>ألوان إدارة النفايات:</strong> أحمر للنفايات المعدية (مثل الدم)، أسود للنفايات العامة، حاوية صفراء للأدوات الحادة.</p>
+                        <p><strong>مستويات إزالة التلوث:</strong> حرج (الأدوات الجراحية) → التعقيم؛ شبه حرج (المناظير) → التطهير؛ غير حرج (جهاز قياس ضغط الدم) → التنظيف.</p>
+                        <p><strong>معدات الحماية الشخصية:</strong> تذكر الترتيب: رداء → قفازات → قناع → حماية العين (عند الإزالة، عكس الترتيب).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 6: Audio Dictionary -->
+        <section id="dictionary" class="page">
+            <h1>Audio Dictionary</h1>
+            <h2>القاموس الصوتي</h2>
+            
+            <div class="glossary-item">
+                <h3>Healthcare-Associated Infection (HAI) <button class="audio-btn" onclick="speakText('Healthcare-Associated Infection')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: العدوى المرتبطة بالرعاية الصحية</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Infections that patients acquire during receiving treatment for other conditions within a healthcare setting, within 48 hours from admission to hospital.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>عدوى يكتسبها المرضى أثناء تلقي العلاج لحالات أخرى ضمن بيئة الرعاية الصحية، خلال 48 ساعة من دخول المستشفى.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Chain of Infection <button class="audio-btn" onclick="speakText('Chain of Infection')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: سلسلة العدوى</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>A cyclic process consisting of six components that must be present for an infection to occur: Infectious Agent, Reservoir, Portal of Exit, Mode of Transmission, Portal of Entry, and Susceptible Host.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>عملية دورية تتكون من ستة مكونات يجب أن تكون موجودة حتى تحدث العدوى: العامل المعدي، الخزان، بوابة الخروج، طريقة الانتقال، بوابة الدخول، والمضيف المستعد.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Standard Precautions <button class="audio-btn" onclick="speakText('Standard Precautions')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: الاحتياطات القياسية</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Precautions that assume all blood and body fluids are potentially infectious, including 9 elements: Hand Hygiene, PPE, Prevention of occupational exposure, etc.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>احتياطات تفترض أن جميع الدم والسوائل الجسدية معدية محتملة، بما في ذلك 9 عناصر: نظافة اليدين، معدات الحماية الشخصية، الوقاية من التعرض المهني، إلخ.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Personal Protective Equipment (PPE) <button class="audio-btn" onclick="speakText('Personal Protective Equipment')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: معدات الحماية الشخصية</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Equipment worn to minimize exposure to hazards, including gowns, gloves, face masks, N95 masks, face shields, and eye goggles.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>معدات يرتديها لتقليل التعرض للمخاطر، بما في ذلك الرداء، القفازات، أقنعة الوجه، أقنعة N95، درع الوجه، ونظارات العين.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Decontamination <button class="audio-btn" onclick="speakText('Decontamination')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: إزالة التلوث</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>The process of removing soil and pathogenic microorganisms from objects so they are safe to handle, subject to further processing, use or discard.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>عملية إزالة التربة والكائنات الدقيقة الممرضة من الأشياء بحيث تكون آمنة للتعامل معها، وخاضعة لمزيد من المعالجة، أو الاستخدام أو التخلص منها.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Critical Items <button class="audio-btn" onclick="speakText('Critical Items')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: العناصر الحرجة</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Items that enter sterile tissue or the vascular system and present a high risk of infection if contaminated, requiring sterilization.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>عناصر تدخل الأنسجة المعقمة أو الجهاز الوعائي وتشكل خطرًا عاليًا للعدوى إذا كانت ملوثة، وتتطلب التعقيم.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Semicritical Items <button class="audio-btn" onclick="speakText('Semicritical Items')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: العناصر شبه الحرجة</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Items that contact with skin that is not intact or mucous membranes and present risks, requiring high-level disinfection.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>عناصر تلامس الجلد غير السليم أو الأغشية المخاطية وتشكل مخاطر، وتتطلب التطهير عالي المستوى.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Noncritical Items <button class="audio-btn" onclick="speakText('Noncritical Items')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: العناصر غير الحرجة</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Items that contact with skin but not mucous membranes and require only cleaning.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>عناصر تلامس الجلد ولكن ليس الأغشية المخاطية وتتطلب التنظيف فقط.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Medical Asepsis <button class="audio-btn" onclick="speakText('Medical Asepsis')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: التعقيم الطبي</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Practices which prevent by all means of cross infection from one patient to another, including communicable infection. Also known as clean technique.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>ممارسات تمنع بكل الوسائل العدوى المتقاطعة من مريض إلى آخر، بما في ذلك العدوى المعدية. يُعرف أيضًا بتقنية النظافة.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Surgical Asepsis <button class="audio-btn" onclick="speakText('Surgical Asepsis')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: التعقيم الجراحي</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>Practices which eliminate all microorganisms and spores from an object or area, keeping objects and area sterile through sterile technique.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>ممارسات تزيل جميع الكائنات الدقيقة والجراثيم من جسم أو منطقة، والحفاظ على الأشياء والمنطقة معقمة من خلال تقنية معقمة.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Antiseptic <button class="audio-btn" onclick="speakText('Antiseptic')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: مطهر للأنسجة الحية</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>A chemical agent that is applied to living tissue to inhibit the growth of microorganisms.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>عامل كيميائي يطبق على الأنسجة الحية لمنع نمو الكائنات الدقيقة.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Disinfectant <button class="audio-btn" onclick="speakText('Disinfectant')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: مطهر</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>An agent that is intended to kill or remove pathogenic microorganisms, with the exception of bacterial spores.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>عامل يهدف إلى قتل أو إزالة الكائنات الدقيقة الممرضة، باستثناء جراثيم البكتيريا.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Sterilization <button class="audio-btn" onclick="speakText('Sterilization')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: التعقيم</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>The complete destruction of microorganisms, including spores.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>التدمير الكامل للكائنات الدقيقة، بما في ذلك الجراثيم.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Fomite <button class="audio-btn" onclick="speakText('Fomite')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: فيوميت</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>An inanimate object or material that can carry infectious agents and transmit them to a new host.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>جسم أو مادة غير حية يمكن أن تحمل عوامل معدية وتنقلها إلى مضيف جديد.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Portal of Exit <button class="audio-btn" onclick="speakText('Portal of Exit')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: بوابة الخروج</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>The point through which a pathogen leaves the reservoir, such as respiratory tract, gastrointestinal tract, breaks in the skin, blood, and tissues.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>النقطة التي يغادر منها مسبب المرض الخزان، مثل الجهاز التنفسي، الجهاز الهضمي، تمزقات في الجلد، الدم، والأنسجة.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="glossary-item">
+                <h3>Portal of Entry <button class="audio-btn" onclick="speakText('Portal of Entry')"><i class="fas fa-volume-up"></i></button></h3>
+                <h4>Translation: بوابة الدخول</h4>
+                <div class="dual-text-row">
+                    <div class="english-side">
+                        <p>The point at which organisms enter a new host, often the same as the exit route.</p>
+                    </div>
+                    <div class="arabic-side">
+                        <p>النقطة التي تدخل فيها الكائنات مضيفًا جديدًا، وغالبًا ما تكون نفس مسار الخروج.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 7: Important Numbers -->
+        <section id="numbers" class="page">
+            <h1>Important Numbers</h1>
+            <h2>الأرقام المهمة</h2>
+            
+            <div class="important-number">
+                <div class="number">48</div>
+                <div class="number-content">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <h3>Hours</h3>
+                            <p>Healthcare-Associated Infections (HAI) are infections that patients acquire within 48 hours from admission to hospital.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <h3>ساعات</h3>
+                            <p>العدوى المرتبطة بالرعاية الصحية (HAI) هي عدوى يكتسبها المرضى خلال 48 ساعة من دخول المستشفى.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-number">
+                <div class="number">6</div>
+                <div class="number-content">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <h3>Components</h3>
+                            <p>The chain of infection consists of six components: Infectious Agent, Reservoir, Portal of Exit, Mode of Transmission, Portal of Entry, and Susceptible Host.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <h3>مكونات</h3>
+                            <p>سلسلة العدوى تتكون من ستة مكونات: العامل المعدي، الخزان، بوابة الخروج، طريقة الانتقال، بوابة الدخول، والمضيف المستعد.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-number">
+                <div class="number">9</div>
+                <div class="number-content">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <h3>Elements</h3>
+                            <p>Standard Infection Control Precautions consist of 9 elements: Hand Hygiene, PPE, Prevention of occupational exposure, Management of blood and body fluid spillage, Management of care equipment, Environmental control, Safe disposal of waste including sharps, Safe handling of linen, and Patient placement.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <h3>عناصر</h3>
+                            <p>تتكون احتياطات مكافحة العدوى القياسية من 9 عناصر: نظافة اليدين، معدات الحماية الشخصية، الوقاية من التعرض المهني، إدارة انسكاب الدم والسوائل الجسدية، إدارة معدات الرعاية، التحكم البيئي، التخلص الآمن من النفايات بما في ذلك الأدوات الحادة، التعامل الآمن مع الكتان، ووضع المريض.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-number">
+                <div class="number">3</div>
+                <div class="number-content">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <h3>Levels of Decontamination</h3>
+                            <p>There are three levels of decontamination: Noncritical Items (Cleaning), Semicritical Items (Disinfection), and Critical Items (Sterilization).</p>
+                        </div>
+                        <div class="arabic-side">
+                            <h3>مستويات إزالة التلوث</h3>
+                            <p>هناك ثلاثة مستويات لإزالة التلوث: العناصر غير الحرجة (التنظيف)، العناصر شبه الحرجة (التطهير)، والعناصر الحرجة (التعقيم).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-number">
+                <div class="number">3</div>
+                <div class="number-content">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <h3>Kinds of Waste</h3>
+                            <p>There are three kinds of waste: General waste (non-hazardous), Medical waste (generated in diagnosis/treatment), and Hazardous chemical waste (potentially toxic).</p>
+                        </div>
+                        <div class="arabic-side">
+                            <h3>أنواع النفايات</h3>
+                            <p>هناك ثلاثة أنواع من النفايات: النفايات العامة (غير خطرة)، النفايات الطبية (المتولدة في التشخيص/العلاج)، والنفايات الكيميائية الخطرة (سامة محتملة).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-number">
+                <div class="number">2</div>
+                <div class="number-content">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <h3>Types of Asepsis</h3>
+                            <p>There are two types of asepsis: Medical Asepsis (Clean Technique) and Surgical Asepsis (Sterile Technique).</p>
+                        </div>
+                        <div class="arabic-side">
+                            <h3>نوعا التعقيم</h3>
+                            <p>هناك نوعان من التعقيم: التعقيم الطبي (تقنية النظافة) والتعقيم الجراحي (تقنية معقمة).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="important-number">
+                <div class="number">7</div>
+                <div class="number-content">
+                    <div class="dual-text-row">
+                        <div class="english-side">
+                            <h3>Principles of Aseptic Technique</h3>
+                            <p>There are seven key principles of aseptic technique: If sterile item touches unsterile item, it becomes unsterile; If sterile item becomes wet, it's considered unsterile; If sterile item has a hole, it becomes unsterile; If sterile items fall on the floor, it's considered unsterile; If unsterile item crosses over the sterile item, it becomes unsterile; If sterile items are exposed to air, it becomes unsterile; If in doubt about sterility, consider it unsterile.</p>
+                        </div>
+                        <div class="arabic-side">
+                            <h3>مبادئ تقنية التعقيم</h3>
+                            <p>هناك سبعة مبادئ أساسية لتقنية التعقيم: إذا لمس العنصر المعقم عنصرًا غير معقم، يصبح غير معقم؛ إذا أصبح العنصر المعقم مبللاً، يعتبر غير معقم؛ إذا كان للعنصر المعقم ثقب، يصبح غير معقم؛ إذا سقطت العناصر المعقمة على الأرض، تعتبر غير معقمة؛ إذا عبر العنصر غير المعقم فوق العنصر المعقم، يصبح غير معقم؛ إذا تعرضت العناصر المعقمة للهواء، تصبح غير معقمة؛ إذا كان هناك شك في التعقيم، اعتبره غير معقم.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <a href="https://wa.me/201121833902">📱 01121833902</a>
+        <a href="tel:+201012575443">📞 01012575443</a>
+        <a href="https://www.facebook.com/share/1CjgYdbne7/" target="_blank">👤 فيسبوك</a>
+        <p style="margin-top:2rem;padding-top:2rem;border-top:2px solid rgba(255,255,255,0.3)">
+            صدقة جارية على روح عمتي رحمة الله عليها وكل أموات المسلمين
+        </p>
+    </footer>
+
+    <script>
+        // Flashcards data
+        const cards = [
+            {
+                front: {
+                    en: "Healthcare-Associated Infections (HAI)",
+                    ar: "العدوى المرتبطة بالرعاية الصحية"
+                },
+                back: {
+                    en: "Infections that patients acquire during receiving treatment for other conditions within a healthcare setting, within 48 hours from admission to hospital. Common sites: UTI, Surgical site infection, Bloodstream infection, Pneumonia",
+                    ar: "عدوى يكتسبها المرضى أثناء تلقي العلاج لحالات أخرى ضمن بيئة الرعاية الصحية، خلال 48 ساعة من دخول المستشفى. المواقع الشائعة: عدوى المسالك البولية، عدوى موقع الجراحة، عدوى مجرى الدم، الالتهاب الرئوي"
+                }
+            },
+            {
+                front: {
+                    en: "Chain of Infection",
+                    ar: "سلسلة العدوى"
+                },
+                back: {
+                    en: "A cyclic process consisting of six components: Infectious Agent, Reservoir, Portal of Exit, Mode of Transmission, Portal of Entry, and Susceptible Host",
+                    ar: "عملية دورية تتكون من ستة مكونات: العامل المعدي، الخزان، بوابة الخروج، طريقة الانتقال، بوابة الدخول، والمضيف المستعد"
+                }
+            },
+            {
+                front: {
+                    en: "Standard Infection Control Precautions",
+                    ar: "احتياطات مكافحة العدوى القياسية"
+                },
+                back: {
+                    en: "Precautions that assume all blood and body fluids are potentially infectious, including 9 elements: Hand Hygiene, PPE, Prevention of occupational exposure, Management of blood and body fluid spillage, Management of care equipment, Environmental control, Safe disposal of waste including sharps, Safe handling of linen, and Patient placement",
+                    ar: "احتياطات تفترض أن جميع الدم والسوائل الجسدية معدية محتملة، بما في ذلك 9 عناصر: نظافة اليدين، معدات الحماية الشخصية، الوقاية من التعرض المهني، إدارة انسكاب الدم والسوائل الجسدية، إدارة معدات الرعاية، التحكم البيئي، التخلص الآمن من النفايات بما في ذلك الأدوات الحادة، التعامل الآمن مع الكتان، ووضع المريض"
+                }
+            },
+            {
+                front: {
+                    en: "Personal Protective Equipment (PPE)",
+                    ar: "معدات الحماية الشخصية"
+                },
+                back: {
+                    en: "Equipment worn to minimize exposure to hazards, including gowns, gloves, face masks, N95 masks, face shields, and eye goggles",
+                    ar: "معدات يرتديها لتقليل التعرض للمخاطر، بما في ذلك الرداء، القفازات، أقنعة الوجه، أقنعة N95، درع الوجه، ونظارات العين"
+                }
+            },
+            {
+                front: {
+                    en: "Decontamination",
+                    ar: "إزالة التلوث"
+                },
+                back: {
+                    en: "The process of removing soil and pathogenic microorganisms from objects so they are safe to handle, subject to further processing, use or discard",
+                    ar: "عملية إزالة التربة والكائنات الدقيقة الممرضة من الأشياء بحيث تكون آمنة للتعامل معها، وخاضعة لمزيد من المعالجة، أو الاستخدام أو التخلص منها"
+                }
+            },
+            {
+                front: {
+                    en: "Critical Items",
+                    ar: "العناصر الحرجة"
+                },
+                back: {
+                    en: "Items that enter sterile tissue or the vascular system and present a high risk of infection if contaminated, requiring sterilization. Examples: Surgical instruments, Cardiac catheters, Urinary catheters, Needles & implants",
+                    ar: "عناصر تدخل الأنسجة المعقمة أو الجهاز الوعائي وتشكل خطرًا عاليًا للعدوى إذا كانت ملوثة، وتتطلب التعقيم. أمثلة: الأدوات الجراحية، القسطرة القلبية، القسطرة البولية، الإبر والغرسات"
+                }
+            },
+            {
+                front: {
+                    en: "Semicritical Items",
+                    ar: "العناصر شبه الحرجة"
+                },
+                back: {
+                    en: "Items that contact with skin that is not intact or mucous membranes and present risks, requiring high-level disinfection. Examples: Gastrointestinal endoscopes, Reusable mercury thermometers",
+                    ar: "عناصر تلامس الجلد غير السليم أو الأغشية المخاطية وتشكل مخاطر، وتتطلب التطهير عالي المستوى. أمثلة: مناظير الجهاز الهضمي، موازين الزئبق القابلة لإعادة الاستخدام"
+                }
+            },
+            {
+                front: {
+                    en: "Noncritical Items",
+                    ar: "العناصر غير الحرجة"
+                },
+                back: {
+                    en: "Items that contact with skin but not mucous membranes and require only cleaning. Examples: Blood pressure cuffs, Crutches, Linens",
+                    ar: "عناصر تلامس الجلد ولكن ليس الأغشية المخاطية وتتطلب التنظيف فقط. أمثلة: أجهزة قياس ضغط الدم، العكازات، الأغطية"
+                }
+            },
+            {
+                front: {
+                    en: "Waste Management",
+                    ar: "إدارة النفايات"
+                },
+                back: {
+                    en: "All activities involved in the handling, treatment, conditioning, storage and disposal of waste. Kinds: General waste (non-hazardous), Medical waste (generated in diagnosis/treatment), Hazardous chemical waste (potentially toxic)",
+                    ar: "جميع الأنشطة المتعلقة بالتعامل والمعالجة والتكييف والتخزين والتخلص من النفايات. الأنواع: النفايات العامة (غير خطرة)، النفايات الطبية (المتولدة في التشخيص/العلاج)، النفايات الكيميائية الخطرة (سامة محتملة)"
+                }
+            },
+            {
+                front: {
+                    en: "Medical Asepsis",
+                    ar: "التعقيم الطبي"
+                },
+                back: {
+                    en: "Practices which prevent by all means of cross infection from one patient to another, including communicable infection. Also known as clean technique",
+                    ar: "ممارسات تمنع بكل الوسائل العدوى المتقاطعة من مريض إلى آخر، بما في ذلك العدوى المعدية. يُعرف أيضًا بتقنية النظافة"
+                }
+            },
+            {
+                front: {
+                    en: "Surgical Asepsis",
+                    ar: "التعقيم الجراحي"
+                },
+                back: {
+                    en: "Practices which eliminate all microorganisms and spores from an object or area, keeping objects and area sterile through sterile technique",
+                    ar: "ممارسات تزيل جميع الكائنات الدقيقة والجراثيم من جسم أو منطقة، والحفاظ على الأشياء والمنطقة معقمة من خلال تقنية معقمة"
+                }
+            },
+            {
+                front: {
+                    en: "Antiseptic",
+                    ar: "مطهر للأنسجة الحية"
+                },
+                back: {
+                    en: "A chemical agent that is applied to living tissue to inhibit the growth of microorganisms",
+                    ar: "عامل كيميائي يطبق على الأنسجة الحية لمنع نمو الكائنات الدقيقة"
+                }
+            },
+            {
+                front: {
+                    en: "Disinfectant",
+                    ar: "مطهر"
+                },
+                back: {
+                    en: "An agent that is intended to kill or remove pathogenic microorganisms, with the exception of bacterial spores",
+                    ar: "عامل يهدف إلى قتل أو إزالة الكائنات الدقيقة الممرضة، باستثناء جراثيم البكتيريا"
+                }
+            },
+            {
+                front: {
+                    en: "Sterilization",
+                    ar: "التعقيم"
+                },
+                back: {
+                    en: "The complete destruction of microorganisms, including spores",
+                    ar: "التدمير الكامل للكائنات الدقيقة، بما في ذلك الجراثيم"
+                }
+            },
+            {
+                front: {
+                    en: "Breaking the Chain of Infection",
+                    ar: "كسر سلسلة العدوى"
+                },
+                back: {
+                    en: "Interrupting any of the six components in the chain of infection can prevent the spread of pathogens. Examples: Hand hygiene breaks the mode of transmission, vaccination reduces susceptibility, PPE blocks portals of entry",
+                    ar: "مقاطعة أي من المكونات الستة في سلسلة العدوى يمكن أن يمنع انتشار مسببات الأمراض. أمثلة: نظافة اليدين تكسر طريقة الانتقال، التطعيم يقلل القابلية، معدات الحماية الشخصية تحجب بوابات الدخول"
+                }
+            }
+        ];
+
+        let cardIndex = 0;
+        let lastScroll = 0;
+
+        // Initialize flashcard
+        function updateFlashcard() {
+            const card = cards[cardIndex];
+            document.querySelector('.flashcard-front h2').textContent = card.front.en;
+            document.querySelector('.flashcard-front h3').textContent = card.front.ar;
+            
+            const backContent = document.querySelector('.flashcard-back .dual-text-row');
+            backContent.innerHTML = `
+                <div class="english-side">
+                    <p>${card.back.en}</p>
+                </div>
+                <div class="arabic-side">
+                    <p>${card.back.ar}</p>
+                </div>
+            `;
+            
+            document.getElementById('current-card').textContent = cardIndex + 1;
+            document.getElementById('current-card-ar').textContent = cardIndex + 1;
+            document.getElementById('total-cards').textContent = cards.length;
+            document.getElementById('total-cards-ar').textContent = cards.length;
+            
+            document.querySelector('.flashcard').classList.remove('flipped');
+        }
+
+        function flipCard() {
+            document.querySelector('.flashcard').classList.toggle('flipped');
+        }
+
+        function nextCard() {
+            if (cardIndex < cards.length - 1) {
+                cardIndex++;
+                updateFlashcard();
+            }
+        }
+
+        function prevCard() {
+            if (cardIndex > 0) {
+                cardIndex--;
+                updateFlashcard();
+            }
+        }
+
+        function navigateToPage(id, link) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+            document.getElementById(id).classList.add('active-page');
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            link.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('dark', document.body.classList.contains('dark-mode'));
+            
+            const icon = document.getElementById('theme-icon');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        function checkAnswer(element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => {
+                opt.onclick = null;
+                opt.style.cursor = 'default';
+            });
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('incorrect');
+                // Find and highlight the correct answer
+                options.forEach(opt => {
+                    if (opt !== element && opt.onclick === null) {
+                        // This is a workaround to find the correct answer
+                        // In a real implementation, you would have a better way to identify the correct answer
+                        const questionNumber = element.closest('.question-card').querySelector('h3').textContent.split(' ')[1];
+                        const correctAnswers = {
+                            '1': 'D',
+                            '2': 'B',
+                            '3': 'B',
+                            '4': 'B',
+                            '5': 'C',
+                            '6': 'B',
+                            '7': 'C',
+                            '8': 'C',
+                            '9': 'C',
+                            '10': 'B',
+                            '11': 'C',
+                            '12': 'B',
+                            '13': 'B',
+                            '14': 'C',
+                            '15': 'D'
+                        };
+                        
+                        const optionLetter = opt.querySelector('.english-side').textContent.charAt(0);
+                        if (optionLetter === correctAnswers[questionNumber]) {
+                            opt.classList.add('correct');
+                        }
+                    }
+                });
+            }
+            
+            // Show explanation
+            const questionNumber = element.closest('.question-card').querySelector('h3').textContent.split(' ')[1];
+            document.getElementById(`explanation${questionNumber}`).style.display = 'block';
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Hide/show header on scroll
+        window.addEventListener('scroll', () => {
+            let scroll = window.pageYOffset;
+            if (scroll > lastScroll && scroll > 100) {
+                document.querySelector('header').classList.add('hidden');
+            } else {
+                document.querySelector('header').classList.remove('hidden');
+            }
+            lastScroll = scroll;
+        });
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check for dark mode preference
+            if (localStorage.getItem('dark') === 'true') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-icon').classList.remove('fa-moon');
+                document.getElementById('theme-icon').classList.add('fa-sun');
+            }
+            
+            // Initialize flashcard
+            updateFlashcard();
+            
+            // Hide welcome screen after 4 seconds
+            setTimeout(() => {
+                const welcomeScreen = document.getElementById('welcome-screen');
+                welcomeScreen.style.opacity = '0';
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                }, 500);
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
